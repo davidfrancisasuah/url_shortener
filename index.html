@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>URL SHORTENER</title>
+    <!-- Bootstrap icons-->
+    <link href="./assets/bootstrapIcon/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="./assets/fontawesome-free/css/all.min.css">
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="./assets/css/custom.css" rel="stylesheet" />
+    <link href="./assets/css/styles.css" rel="stylesheet" />
+</head>
+
+<body class="bg-light"></body>
+    <main>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-primary" href="./index.html">URL Shortener</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="./domainchecker.php">Domain Name Checker</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary ms-lg-3" href="./admin.php">Admin</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead d-flex align-items-center min-vh-100" style="background: linear-gradient(135deg, #007bff 0%, #6a11cb 100%);">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-8">
+                        <div class="text-center text-white py-5 px-4 rounded-4 shadow-lg" style="background: rgba(0,0,0,0.25);">
+                            <h1 class="mb-4 display-4 fw-bold">Generate a Short URL Now!</h1>
+                            <form id="shorten" class="mb-4">
+                                <div class="input-group input-group-lg shadow-sm">
+                                    <input class="form-control rounded-start" type="url" placeholder="Paste your long URL here" aria-label="Enter your URL..." aria-describedby="button-submit" name="url" required autocomplete="off" />
+                                    <button class="btn btn-warning fw-bold rounded-end" id="button-submit" type="submit">Shorten</button>
+                                </div>
+                            </form>
+                            <div id="shorten-result" class="d-none">
+                                <div class="card border-0 shadow-lg">
+                                    <div class="card-body">
+                                        <h3 class="fw-bold text-success"><i class="bi bi-check-circle-fill"></i> URL Shortened Successfully</h3>
+                                        <hr>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="me-3" id="result-img">
+                                                <img src="" class="img-thumbnail rounded" style="width: 80px; height: 80px; object-fit: contain;" alt="">
+                                            </div>
+                                            <div id="result-info">
+                                                <h5 class="mb-1 fw-semibold" id="site-title"></h5>
+                                                <small class="text-muted" id="site-description"></small>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="form-label text-muted mb-0"><b>Original URL:</b></label>
+                                            <div id="o_url" class="text-break"></div>
+                                        </div>
+                                        <div>
+                                            <label class="form-label text-muted mb-0"><b>Shortened URL:</b></label>
+                                            <span id="shorten_url" class="fw-semibold text-primary"></span>
+                                            <a href="#" id="copy_to_clip" class="btn btn-outline-secondary btn-sm ms-2" target="_blank" title="Copy to Clipboard">
+                                                <i class="fa fa-clone"></i> Copy
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="shorten-loading" class="d-none mt-3">
+                                <div class="spinner-border text-warning" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <span class="ms-2">Shortening your URL...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- How to Use Section -->
+        <section class="features-icons bg-white text-center py-5">
+            <div class="container">
+                <h3 class="mb-5 fw-bold text-primary">How to Use</h3>
+                <div class="row">
+                    <div class="col-lg-4 mb-4">
+                        <div class="features-icons-item mx-auto">
+                            <div class="features-icons-icon d-flex justify-content-center align-items-center mb-3">
+                                <i class="bi bi-window display-4 text-primary"></i>
+                            </div>
+                            <h5 class="fw-semibold">Step 1</h5>
+                            <p class="lead mb-0 text-muted">Copy the site URL you want to shorten.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <div class="features-icons-item mx-auto">
+                            <div class="features-icons-icon d-flex justify-content-center align-items-center mb-3">
+                                <i class="bi bi-clipboard-check display-4 text-primary"></i>
+                            </div>
+                            <h5 class="fw-semibold">Step 2</h5>
+                            <p class="lead mb-0 text-muted">Paste the URL in the input field and click the <b>Shorten</b> button.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <div class="features-icons-item mx-auto">
+                            <div class="features-icons-icon d-flex justify-content-center align-items-center mb-3">
+                                <i class="bi bi-clipboard display-4 text-primary"></i>
+                            </div>
+                            <h5 class="fw-semibold">Step 3</h5>
+                            <p class="lead mb-0 text-muted">Click <b>Copy</b> to copy the generated short URL.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-white border-top py-4 mt-auto">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 text-center text-lg-start mb-3 mb-lg-0">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="./privacy-policy.php">Privacy Policy</a></li>
+                        </ul>
+                        <p class="text-muted small mb-0">&copy; URL SHORTENER 2025. All Rights Reserved. Developed by <a href="mailto:davidfrancis@bgworldent.com" target="_blank" class="text-decoration-none">DavetheCoder</a></p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-end">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item me-3">
+                                <a href="#!" class="text-primary"><i class="bi bi-facebook fs-4"></i></a>
+                            </li>
+                            <li class="list-inline-item me-3">
+                                <a href="#!" class="text-info"><i class="bi bi-twitter fs-4"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!" class="text-danger"><i class="bi bi-instagram fs-4"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="./assets/js/jquery-3.6.0.min.js"></script>
+        <script src="./assets/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="./assets/js/script.js"></script>
+        <script>
+            // Example: Show loading spinner and result (for demonstration)
+            $('#shorten').on('submit', function (e) {
+                e.preventDefault();
+                $('#shorten-result').addClass('d-none');
+                $('#shorten-loading').removeClass('d-none');
+                setTimeout(function () {
+                    $('#shorten-loading').addClass('d-none');
+                    $('#shorten-result').removeClass('d-none');
+                }, 1200);
+            });
+            $('#copy_to_clip').on('click', function (e) {
+                e.preventDefault();
+                var url = $('#shorten_url').text();
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url);
+                }
+            });
+        </script>
+    </main>
+</body>
+
+</html>
